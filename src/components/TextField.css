@@ -1,0 +1,49 @@
+.component {
+  flex-direction: column; 
+  width: 448px;
+  max-width: 100%;
+}
+
+.upLabel {
+  margin: 0 0 4px 0;
+  float: left;
+  color: black;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.downLabel {
+  width: 100%;
+  margin: 4px 0 0 0;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.downLabel * {
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
+.helperText {
+  float: left;
+}
+
+.counter {
+  float: right;
+}
+
+.error,
+.error * {
+  color: #E31227;
+}
+
+.disabled,
+.disabled * {
+  color: #949494;
+}
+
+.red {
+  display: inline;
+  color: #E31227;
+}
