@@ -7,32 +7,71 @@ import "./TextField.css";
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    "& .MuiOutlinedInput-root": {
-      padding: "8px 8px 8px 12px",
+    "& .MuiInputBase-root": {
+      padding: "0",
       fontSize: "16px",
       fontWeight: "400",
       lineHeight: "24px",
       color: "#949494",
-      "& .MuiOutlinedInput-input": { padding: "0"},
-      "& > fieldset": { padding: "8px 12px", borderRadius: "8px" },
+      "& > textarea": { padding: "8px 12px 8px 8px" },
+      "& > input": { padding: "8px 12px 8px 8px" },
+      "&:not(.Mui-disabled)": {
+        "&:before": {
+          borderBottom: "1px solid #B2B2B2",
+        },
+        "&:hover": {
+          "&:before": {
+            borderBottom: "1px solid black",
+          },          
+        }
+      },
+      "&:has(.Mui-disabled)": {
+        "&:before": {
+          borderBottom: "1px solid #B2B2B2"
+        },
+      },
       "&.Mui-filled": {
         color: "black",
-        "& > fieldset": { borderColor: "#B2B2B2" },
+      },
+      "&.Mui-focused:not(.Mui-error)": {
+        color: "black",
+        "&:after": {
+          borderBottom: "2px solid #148F2A",
+        },
+      },
+      "&.Mui-error": {
+        "&:after": {
+          borderBottom: "1px solid red"
+        },
+        "&.Mui-focused": {
+          color: "black",
+          "&:after": {
+            borderBottom: "1px solid red",
+          },
+        },
+      },
+    },
+    "& .MuiOutlinedInput-root": {
+      "& > fieldset": { padding: "8px 12px 8px 8px", borderRadius: "8px" },
+      "&.Mui-filled": {
+        color: "black",
+        "& > fieldset": { border: "1px solid #B2B2B2" },
       },
       "&.Mui-focused": {
         color: "black",
-        "& > fieldset": { borderColor: "#148F2A" },
+        "& > fieldset": { border: "2px solid #148F2A" },
       },
       "&.Mui-error": {
         "&.Mui-focused": {
           color: "black",
-          "& > fieldset": { borderColor: "#E31227" },
+          "& > fieldset": { border: "1px solid #E31227" },
         },
       },
     },
   },
 });
 
+// Кастомизированных компонент TextField
 const TextFieldComponent = ({ label, helperText, limitedSymbols=false, ...props}) => {
 // Для работы props limitedSymbols создаем начальное состояние и передаем в него данные из контролируемого input TextField
   const [inputState, SetInputState] = useState('Text');
@@ -57,11 +96,10 @@ const TextFieldComponent = ({ label, helperText, limitedSymbols=false, ...props}
         <TextField
           label={false}
           classes={{
-          root: classes.root,
+            root: classes.root,
           }}
           value={inputState}
           onChange={handleChange}
-          variant="outlined"
           inputProps={{ maxLength: 200 }}
           {...props}
         />
